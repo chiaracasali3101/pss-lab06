@@ -25,7 +25,7 @@ class TestStrictBankAccount {
     @BeforeEach
     public void setUp() {
         this.mRossi = new AccountHolder("Mario", "Rossi", 1);
-        this.bankAccount = new SimpleBankAccount(mRossi, 0.0);
+        this.bankAccount = new StrictBankAccount(mRossi, 0.0);
     }
 
     /**
@@ -46,7 +46,7 @@ class TestStrictBankAccount {
         bankAccount.deposit(1, 100);
         bankAccount.chargeManagementFees(1);
         bankAccount.getBalance();
-        assertEquals(95.0, bankAccount.getBalance());
+        assertEquals(94.9, bankAccount.getBalance());
     }
 
     /**
@@ -54,7 +54,13 @@ class TestStrictBankAccount {
      */
     @Test
     public void testNegativeWithdraw() {
-        
+        try {
+            bankAccount.withdraw(1, -100);
+            fail("Fail");
+        }
+        catch(IllegalArgumentException exception){
+            assertFalse(false);
+        }
     }
 
     /**
@@ -63,7 +69,8 @@ class TestStrictBankAccount {
     @Test
     public void testWithdrawingTooMuch() {
         try{
-            bankAccount.withdraw(1, 100);
+            bankAccount.withdraw(1, 150);
+            fail("Fail"); //se arriva qui il codice fallisce
         }
         catch(IllegalArgumentException exception){
             assertFalse(false);
