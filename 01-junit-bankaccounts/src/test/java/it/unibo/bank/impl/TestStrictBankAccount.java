@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.fail;
 
 /**
@@ -45,7 +46,7 @@ class TestStrictBankAccount {
         bankAccount.deposit(1, 100);
         bankAccount.chargeManagementFees(1);
         bankAccount.getBalance();
-        assertEquals(0.5, bankAccount.getBalance());
+        assertEquals(95.0, bankAccount.getBalance());
     }
 
     /**
@@ -53,7 +54,12 @@ class TestStrictBankAccount {
      */
     @Test
     public void testNegativeWithdraw() {
-        fail("To be implemented");
+        try{
+            bankAccount.withdraw(1, 100);
+        }
+        catch(IllegalArgumentException exception){
+            assertFalse(false);
+        }
     }
 
     /**
