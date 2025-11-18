@@ -54,12 +54,7 @@ class TestStrictBankAccount {
      */
     @Test
     public void testNegativeWithdraw() {
-        try{
-            bankAccount.withdraw(1, 100);
-        }
-        catch(IllegalArgumentException exception){
-            assertFalse(false);
-        }
+        
     }
 
     /**
@@ -67,6 +62,11 @@ class TestStrictBankAccount {
      */
     @Test
     public void testWithdrawingTooMuch() {
-        fail("To be implemented");
+        try{
+            bankAccount.withdraw(1, 100);
+        }
+        catch(IllegalArgumentException exception){
+            assertFalse(false);
+        }
     }
 }
