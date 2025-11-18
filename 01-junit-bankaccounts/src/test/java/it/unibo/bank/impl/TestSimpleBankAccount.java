@@ -25,7 +25,7 @@ class TestSimpleBankAccount {
     /**
      * Configuration step: this is performed BEFORE each test.
      */
-    @BeforeEach
+    @BeforeEach //prima di tutti i test viene eseguito setup
     void setUp() {
         this.mRossi = new AccountHolder("Mario", "Rossi", 1);
         this.aBianchi = new AccountHolder("Andrea", "Bianchi", 2);
